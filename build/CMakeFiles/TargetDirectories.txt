@@ -1,0 +1,4 @@
+/home/student/camera/build/CMakeFiles/rebuild_cache.dir
+/home/student/camera/build/CMakeFiles/edit_cache.dir
+/home/student/camera/build/CMakeFiles/yuv_to_jpeg.dir
+/home/student/camera/build/CMakeFiles/camera_capture.dir

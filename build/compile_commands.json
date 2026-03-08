@@ -1,0 +1,12 @@
+[
+{
+  "directory": "/home/student/camera/build",
+  "command": "/usr/bin/arm-linux-gnueabihf-gcc -g -std=gnu11 -o CMakeFiles/yuv_to_jpeg.dir/yuv_to_jpeg.c.o -c /home/student/camera/yuv_to_jpeg.c",
+  "file": "/home/student/camera/yuv_to_jpeg.c"
+},
+{
+  "directory": "/home/student/camera/build",
+  "command": "/usr/bin/arm-linux-gnueabihf-gcc -g -std=gnu11 -o CMakeFiles/camera_capture.dir/main.c.o -c /home/student/camera/main.c",
+  "file": "/home/student/camera/main.c"
+}
+]

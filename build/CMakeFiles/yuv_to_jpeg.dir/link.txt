@@ -1,0 +1,1 @@
+/usr/bin/gcc CMakeFiles/yuv_to_jpeg.dir/yuv_to_jpeg.c.o -o yuv_to_jpeg  /usr/lib/x86_64-linux-gnu/libjpeg.so 

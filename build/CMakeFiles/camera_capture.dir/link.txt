@@ -1,0 +1,1 @@
+/usr/bin/gcc CMakeFiles/camera_capture.dir/main.c.o -o camera_capture 

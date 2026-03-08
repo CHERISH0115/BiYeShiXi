@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/student/camera/main.c
+stdio.h
+-
+stdlib.h
+-
+string.h
+-
+fcntl.h
+-
+unistd.h
+-
+sys/ioctl.h
+-
+sys/mman.h
+-
+linux/videodev2.h
+-
+errno.h
+-
+
