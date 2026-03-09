@@ -197,6 +197,14 @@ void menu3_ai_assistant() {
     print_separator();
     print_loading("正在连接AI助手，请稍候");
     
+    // 显示加载动画
+    for (int i = 0; i < 3; i++) {
+        fflush(stdout);
+        usleep(300000);  // 300ms
+        printf(".");
+    }
+    printf("\n");
+    
     if (use_image[0] == 'y' || use_image[0] == 'Y') {
         snprintf(command, sizeof(command), "CAI_API_KEY=e25c2846-195e-40c8-b19c-84a388ad06e6 %s %s %s", AI_TEST, question, JPG_FILE);
     } else {
@@ -214,7 +222,12 @@ void menu3_ai_assistant() {
     int timeout = 30;
     time_t start_time = time(NULL);
     
-    while (fgets(ai_output + strlen(ai_output), sizeof(ai_output) - strlen(ai_output), pipe) != NULL) {
+    // 实时输出AI响应
+    char buffer[1024];
+    printf("\n  🤖  AI助手回答:\n");
+    printf("  ┌────────────────────────────────────────────────────────┐\n");
+    
+    while (fgets(buffer, sizeof(buffer), pipe) != NULL) {
         // 检查是否超时
         if (time(NULL) - start_time > timeout) {
             print_error("AI助手响应超时");
@@ -222,24 +235,22 @@ void menu3_ai_assistant() {
             wait_and_return();
             return;
         }
+        
+        // 实时输出AI响应
+        char *line = strtok(buffer, "\n");
+        while (line != NULL) {
+            printf("  │ %-54s │\n", line);
+            fflush(stdout);  // 立即刷新输出
+            strcat(ai_output, line);
+            strcat(ai_output, "\n");
+            line = strtok(NULL, "\n");
+        }
     }
     pclose(pipe);
     
+    printf("  └────────────────────────────────────────────────────────┘\n");
     print_done();
     print_separator();
-    printf("\n  🤖  AI助手回答:\n");
-    printf("  ┌────────────────────────────────────────────────────────┐\n");
-    
-    // 分行显示AI输出
-    char temp_output[4096];
-    strncpy(temp_output, ai_output, sizeof(temp_output) - 1);
-    char *line = strtok(temp_output, "\n");
-    while (line != NULL) {
-        printf("  │ %-54s │\n", line);
-        line = strtok(NULL, "\n");
-    }
-    
-    printf("  └────────────────────────────────────────────────────────┘\n");
     
     // 保存AI输出到文件
     FILE *fp = fopen("ai_output.txt", "w");
